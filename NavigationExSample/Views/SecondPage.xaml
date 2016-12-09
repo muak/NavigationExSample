@@ -6,4 +6,9 @@
 		prism:ViewModelLocator.AutowireViewModel="True" 
 		x:Class="NavigationExSample.Views.SecondPage"
 		Title="SecondPage">
+	<StackLayout Margin="10">
+		<Button Text="GoToNextPage" Command="{Binding NextCommand}" />
+		<Button Text="ChangeFirstTab" Command="{Binding ChangeTabCommand}" />
+		<Label Text="{Binding LogText}" FontSize="14" TextColor="#444444" />
+	</StackLayout>
 </ContentPage>

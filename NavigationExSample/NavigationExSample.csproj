@@ -32,10 +32,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\MyTabbed.cs" />
     <Compile Include="Views\Navigations.cs" />
     <Compile Include="Views\FirstPage.xaml.cs">
@@ -45,28 +41,22 @@
     <Compile Include="Views\SecondPage.xaml.cs">
       <DependentUpon>SecondPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ThirdPage.xaml.cs">
-      <DependentUpon>ThirdPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\NextPage.xaml.cs">
       <DependentUpon>NextPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Navigation\MyPageNavigationService.cs" />
+    <Compile Include="ViewModels\SecondPageViewModel.cs" />
+    <Compile Include="Navigation\TabbedPageOverNavigationPageActiveAwareBehavior.cs" />
+    <Compile Include="Navigation\NavigationServiceExtentions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FirstPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SecondPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ThirdPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\NextPage.xaml">

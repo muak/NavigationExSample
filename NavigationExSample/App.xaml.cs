@@ -5,6 +5,10 @@ using System.Linq;
 using Microsoft.Practices.ObjectBuilder2;
 using Xamarin.Forms;
 using System;
+using Prism.Navigation;
+using NavigationExSample.Navigation;
+using Microsoft.Practices.Unity;
+using System.Collections.Generic;
 
 namespace NavigationExSample
 {
@@ -12,18 +16,16 @@ namespace NavigationExSample
     {
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
-        protected override void OnInitialized()
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
-            var root = new MyTabbed();
-            var naviA = new NaviA { Title = "Tab1" };
-            var naviB = new NaviB { Title = "Tab2" };
-            naviA.PushAsync(new FirstPage(), false);
-            naviB.PushAsync(new SecondPage(), false);
-            root.Children.Add(naviA);
-            root.Children.Add(naviB);
-            MainPage = root;
+            var nav = (MyPageNavigationService)NavigationService;
+
+            MainPage = nav.CreateMainTabbedPage(nameof(MyTabbed), new List<NavigationPage> {
+                    await nav.CreateNavigationPage(nameof(NaviA),nameof(FirstPage)),
+                    await nav.CreateNavigationPage(nameof(NaviB),nameof(SecondPage)),
+                });
 
         }
 
@@ -34,6 +36,18 @@ namespace NavigationExSample
                           .ForEach(t => {
                               Container.RegisterTypeForNavigation(t.AsType(), t.Name);
                           });
+        }
+
+        protected override void ConfigureContainer()
+        {
+            base.ConfigureContainer();
+
+            Container.RegisterType<INavigationService, MyPageNavigationService>("MyPageNavigationService");
+        }
+
+        protected override INavigationService CreateNavigationService()
+        {
+            return Container.Resolve<INavigationService>("MyPageNavigationService");
         }
     }
 }

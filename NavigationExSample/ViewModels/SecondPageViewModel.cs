@@ -11,9 +11,8 @@ using NavigationExSample.Views;
 
 namespace NavigationExSample.ViewModels
 {
-    public class FirstPageViewModel : BindableBase, INavigationAware, IActiveAware
+    public class SecondPageViewModel : BindableBase, INavigationAware, IActiveAware
     {
-
         private string _LogText;
         public string LogText {
             get { return _LogText; }
@@ -33,7 +32,7 @@ namespace NavigationExSample.ViewModels
         public DelegateCommand ChangeTabCommand {
             get {
                 return _ChangeTabCommand = _ChangeTabCommand ?? new DelegateCommand(() => {
-                    _navigationService.ChangeTab<NaviB>();
+                    _navigationService.ChangeTab<FirstPage>();
                 });
             }
         }
@@ -59,9 +58,10 @@ namespace NavigationExSample.ViewModels
 
         public event EventHandler IsActiveChanged;
 
-        public FirstPageViewModel(INavigationService navigationService)
+        public SecondPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+
         }
 
         void OnActive()

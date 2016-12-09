@@ -14,6 +14,11 @@ namespace NavigationExSample.Navigation
         public IUnityContainer Container { get;private set; }
         IApplicationProvider _app;
 
+        public Page MainPage {
+            get {
+                return _app.MainPage;
+            }
+        }
 
         public MyPageNavigationService(IUnityContainer container, IApplicationProvider applicationProvider, ILoggerFacade logger) 
             :base(container,applicationProvider,logger)
@@ -22,9 +27,11 @@ namespace NavigationExSample.Navigation
             Container = container;
         }
 
-        public TabbedPage CreateMainPageTabbedHasNavigation(string tabbedName, IEnumerable<NavigationPage> children)
+        public TabbedPage CreateMainTabbedPage(string tabbedName, IEnumerable<NavigationPage> children)
         {
             var tabbedPage = CreatePageFromSegment(tabbedName) as TabbedPage;
+
+            tabbedPage.Behaviors.Add(new TabbedPageOverNavigationPageActiveAwareBehavior());
 
             foreach (var c in children) {
                 tabbedPage.Children.Add(c);
@@ -37,7 +44,6 @@ namespace NavigationExSample.Navigation
         {
 
             var naviPage = CreatePageFromSegment(navName) as NavigationPage;
-
             var contentPage = CreatePageFromSegment(pageName);
 
             if (parameters == null) {
@@ -52,29 +58,5 @@ namespace NavigationExSample.Navigation
 
             return naviPage;
         }
-
-        //public Page MainPage { 
-        //    get {
-        //        return _app.MainPage;
-        //    } 
-        //}
-
-        //public TabbedPage CreateMainPageTabbedHasNavigation(string tabbedName, IEnumerable<NavigationPage> children) {
-        //    var tabbedPage = CreatePageFromSegment(tabbedName) as TabbedPage;
-
-        //    //tabbedPage.Behaviors.Add(new TabbedPageOverNavigationPageActiveAwareBehavior());
-
-        //    foreach (var c in children) {
-        //        tabbedPage.Children.Add(c);
-        //    }
-
-        //    return tabbedPage;
-        //}
-
-
-
-
-
-
     }
 }

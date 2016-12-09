@@ -7,7 +7,9 @@
 		x:Class="NavigationExSample.Views.FirstPage"
 		Title="FirstPage">
 
-	<StackLayout>
+	<StackLayout Margin="10">
 		<Button Text="GoToNextPage" Command="{Binding NextCommand}" />
+		<Button Text="ChangeSecondTab" Command="{Binding ChangeTabCommand}" />
+		<Label Text="{Binding LogText}" FontSize="14" TextColor="#444444" />
 	</StackLayout>
 </ContentPage>
