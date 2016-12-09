@@ -1,14 +1,13 @@
-﻿using Prism.Unity;
-using NavigationExSample.Views;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Microsoft.Practices.ObjectBuilder2;
-using Xamarin.Forms;
-using System;
-using Prism.Navigation;
-using NavigationExSample.Navigation;
 using Microsoft.Practices.Unity;
-using System.Collections.Generic;
+using NavigationExSample.Navigation;
+using NavigationExSample.Views;
+using Prism.Navigation;
+using Prism.Unity;
+using Xamarin.Forms;
 
 namespace NavigationExSample
 {

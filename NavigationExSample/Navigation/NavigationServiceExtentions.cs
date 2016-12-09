@@ -1,10 +1,7 @@
 ﻿using System;
-using Xamarin.Forms;
-using Prism.Navigation;
-using Microsoft.Practices.Unity;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Prism.Unity.Navigation;
+using Prism.Navigation;
+using Xamarin.Forms;
 
 namespace NavigationExSample.Navigation
 {

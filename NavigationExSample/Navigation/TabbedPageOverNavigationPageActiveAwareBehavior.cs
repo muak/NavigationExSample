@@ -3,38 +3,43 @@ using Prism;
 using Prism.Behaviors;
 using Prism.Common;
 using Xamarin.Forms;
+
 namespace NavigationExSample.Navigation
 {
-    public class TabbedPageOverNavigationPageActiveAwareBehavior:BehaviorBase<TabbedPage>
+    public class TabbedPageOverNavigationPageActiveAwareBehavior : BehaviorBase<TabbedPage>
     {
         private Page _lastNavigationCurrent;
 
-        protected override void OnAttachedTo(TabbedPage bindable) {
+        protected override void OnAttachedTo(TabbedPage bindable)
+        {
             base.OnAttachedTo(bindable);
             bindable.CurrentPageChanged += CurrentPageChangedHandlerForNavigationPage;
         }
 
-        protected override void OnDetachingFrom(TabbedPage bindable) {
+        protected override void OnDetachingFrom(TabbedPage bindable)
+        {
             base.OnDetachingFrom(bindable);
             bindable.CurrentPageChanged -= CurrentPageChangedHandlerForNavigationPage; ;
         }
 
-        void CurrentPageChangedHandlerForNavigationPage(object sender, EventArgs e) {
-           
+        void CurrentPageChangedHandlerForNavigationPage(object sender, EventArgs e)
+        {
+
             if (_lastNavigationCurrent == null) {
                 _lastNavigationCurrent = (AssociatedObject.CurrentPage as NavigationPage)?.CurrentPage;
                 SetIsActive(_lastNavigationCurrent, true);
                 return;
             }
 
-            SetIsActive(_lastNavigationCurrent,false);
+            SetIsActive(_lastNavigationCurrent, false);
 
             _lastNavigationCurrent = (AssociatedObject.CurrentPage as NavigationPage)?.CurrentPage;
 
-            SetIsActive(_lastNavigationCurrent,true);
+            SetIsActive(_lastNavigationCurrent, true);
         }
 
-        void SetIsActive(object view, bool isActive) {
+        void SetIsActive(object view, bool isActive)
+        {
             PageUtilities.InvokeViewAndViewModelAction<IActiveAware>(_lastNavigationCurrent, activeAware => activeAware.IsActive = isActive);
         }
     }

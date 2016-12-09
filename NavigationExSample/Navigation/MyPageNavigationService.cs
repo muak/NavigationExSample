@@ -9,9 +9,9 @@ using Xamarin.Forms;
 
 namespace NavigationExSample.Navigation
 {
-    public class MyPageNavigationService:UnityPageNavigationService
+    public class MyPageNavigationService : UnityPageNavigationService
     {
-        public IUnityContainer Container { get;private set; }
+        public IUnityContainer Container { get; private set; }
         IApplicationProvider _app;
 
         public Page MainPage {
@@ -20,8 +20,8 @@ namespace NavigationExSample.Navigation
             }
         }
 
-        public MyPageNavigationService(IUnityContainer container, IApplicationProvider applicationProvider, ILoggerFacade logger) 
-            :base(container,applicationProvider,logger)
+        public MyPageNavigationService(IUnityContainer container, IApplicationProvider applicationProvider, ILoggerFacade logger)
+            : base(container, applicationProvider, logger)
         {
             _app = applicationProvider;
             Container = container;
